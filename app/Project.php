@@ -21,6 +21,4 @@ class Project extends Model
 
     /** @var string $name */
     protected $name;
-
-    protected $
 }

@@ -50,6 +50,6 @@ class ProjectManager
     public function getProject($projectId)
     {
 
-        return Project::find($projectId);
+        return Project::findOrFail($projectId);
     }
 }

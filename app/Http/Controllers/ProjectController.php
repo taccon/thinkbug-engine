@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
 use App\Services\ProjectManager;
+use App\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -30,26 +31,33 @@ class ProjectController extends Controller
         $this->projectManager = $projectManager;
     }
 
+    /**
+     * GET /projects
+     *
+     * @return array projects
+     */
     public function getProjects()
     {
         return $this->projectManager->getAllProjects();
     }
 
     /**
+     * GET /projects/{projectId}
+     *
      * @param int $projectId
      * @return mixed
      */
     public function getProject($projectId)
     {
-        $project = $this->projectManager->getProject($projectId);
-
-        if (!$project) {
-            throw new NotFoundHttpException('Project not found!');
-        }
-
-        return $project;
+        return $this->projectManager->getProject($projectId);
     }
 
+    /**
+     * POST /projects
+     *
+     * @param Request $request
+     * @return static
+     */
     public function postProject(Request $request)
     {
         return $this->projectManager->createProject(
@@ -57,5 +65,40 @@ class ProjectController extends Controller
                 'name' => $request->name
             ]
         );
+    }
+
+    /**
+     * GET /projects/{projectId}/users
+     *
+     * @param $projectId
+     * @return mixed
+     */
+    public function getProjectUsers($projectId)
+    {
+        $project = $this->getProject($projectId);
+
+        return $project->users;
+    }
+
+    /**
+     * POST /projects/{projectId}/users
+     *
+     * @param Request $request
+     * @param $projectId
+     * @return mixed
+     */
+    public function postProjectUsers(Request $request, $projectId)
+    {
+        $user = User::firstOrCreate(['email' => $request->email]);
+        $project = $this->getProject($projectId);
+
+        try {
+            $project->users()->attach($user->id);
+        } catch (QueryException $e) {
+            // TODO Log
+        }
+
+
+        return $project->users;
     }
 }

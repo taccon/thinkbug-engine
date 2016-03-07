@@ -24,11 +24,16 @@ class User extends Model implements
     ];
 
     /**
-     * The attributes excluded from the model's JSON form.
+     * The attributes that should be visible in arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
+    protected $visible = [
+        'name', 'email',
     ];
+
+    public function projects()
+    {
+        return $this->belongsToMany('App\Project');
+    }
 }

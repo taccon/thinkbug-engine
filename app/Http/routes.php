@@ -12,6 +12,9 @@
 */
 
 // Project routes
-$app->get('/projects',              'ProjectController@getProjects');
-$app->get('/projects/{projectId}',  'ProjectController@getProject');
-$app->post('/projects',             'ProjectController@postProject');
+$app->get('/projects',                      'ProjectController@getProjects');
+$app->get('/projects/{projectId}',          'ProjectController@getProject');
+$app->post('/projects',                     'ProjectController@postProject');
+
+$app->get('/projects/{projectId}/users',    'ProjectController@getProjectUsers');
+$app->post('/projects/{projectId}/users',   'ProjectController@postProjectUsers');

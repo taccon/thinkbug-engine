@@ -35,21 +35,10 @@ class Project extends Model
     ];
 
     /** @var string $name */
-    protected $name;
+    public $name;
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function users()
     {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+        return $this->belongsToMany('App\User');
     }
 }

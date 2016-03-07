@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Services\ProjectManager;
 use App\Services\TicketManager;
 
 /**
@@ -17,13 +18,18 @@ class TicketController extends Controller
     /** @var TicketManager $ticketManager */
     protected $ticketManager;
 
+    /** @var ProjectManager $projectManager */
+    protected $projectManager;
+
     /**
      * TicketController constructor.
      * @param TicketManager $ticketManager
+     * @param ProjectManager $projectManager
      */
-    public function __construct(TicketManager $ticketManager)
+    public function __construct(TicketManager $ticketManager, ProjectManager $projectManager)
     {
         $this->ticketManager = $ticketManager;
+        $this->projectManager = $projectManager;
     }
 
     /**
@@ -34,6 +40,8 @@ class TicketController extends Controller
      */
     public function getProjectTickets($projectId)
     {
-        return [];
+        $project = $this->projectManager->getProject($projectId);
+
+        return $project->tickets;
     }
 }

@@ -35,4 +35,14 @@ class Ticket extends Model
 
     /** @var string $status */
     public $status;
+
+    public function author()
+    {
+        return $this->hasOne('App\User');
+    }
+
+    public function assignee()
+    {
+        return $this->hasOne('App\User');
+    }
 }

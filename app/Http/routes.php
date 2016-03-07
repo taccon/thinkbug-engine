@@ -12,10 +12,16 @@
 */
 
 // Project routes
-$app->get('/projects',                      'ProjectController@getProjects');
-$app->get('/projects/{projectId}',          'ProjectController@getProject');
-$app->post('/projects',                     'ProjectController@postProject');
-$app->delete('/projects/{projectId}',       'ProjectController@deleteProject');
+$app->get('/projects', 'ProjectController@getProjects');
+$app->get('/projects/{projectId}', 'ProjectController@getProject');
+$app->post('/projects', 'ProjectController@postProject');
+$app->delete('/projects/{projectId}', 'ProjectController@deleteProject');
 
-$app->get('/projects/{projectId}/users',    'ProjectController@getProjectUsers');
-$app->post('/projects/{projectId}/users',   'ProjectController@postProjectUsers');
+$app->get('/projects/{projectId}/users', 'ProjectController@getProjectUsers');
+$app->post('/projects/{projectId}/users', 'ProjectController@postProjectUsers');
+
+// Ticket routes
+$app->get('/projects/{projectId}/tickets', 'TicketController@getProjectTickets');
+$app->post('/projects/{projectId}/tickets', 'TicketController@postProjectTickets');
+$app->put('/projects/{projectId}/tickets/{ticketId}', 'TicketController@putProjectTicket');
+$app->delete('/projects/{projectId}/tickets/{ticketId}', 'TicketController@deleteProjectTicket');

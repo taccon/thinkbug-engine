@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use App\Services\ProjectManager;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class ProjectController
@@ -30,5 +33,29 @@ class ProjectController extends Controller
     public function getProjects()
     {
         return $this->projectManager->getAllProjects();
+    }
+
+    /**
+     * @param int $projectId
+     * @return mixed
+     */
+    public function getProject($projectId)
+    {
+        $project = $this->projectManager->getProject($projectId);
+
+        if (!$project) {
+            throw new NotFoundHttpException('Project not found!');
+        }
+
+        return $project;
+    }
+
+    public function postProject(Request $request)
+    {
+        return $this->projectManager->createProject(
+            [
+                'name' => $request->name
+            ]
+        );
     }
 }

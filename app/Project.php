@@ -16,9 +16,40 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Project extends Model
 {
-    /** @var int $id */
-    protected $id;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+    ];
+
+    /**
+     * The attributes that should be visible in arrays.
+     *
+     * @var array
+     */
+    protected $visible = [
+        'id', 'name',
+    ];
 
     /** @var string $name */
     protected $name;
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 }

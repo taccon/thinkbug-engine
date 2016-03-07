@@ -11,4 +11,7 @@
 |
 */
 
-$app->get('/projects', 'ProjectController@getProjects');
+// Project routes
+$app->get('/projects',              'ProjectController@getProjects');
+$app->get('/projects/{projectId}',  'ProjectController@getProject');
+$app->post('/projects',             'ProjectController@postProject');

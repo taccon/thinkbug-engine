@@ -13,5 +13,12 @@ namespace App\Services;
  */
 class ProjectManager
 {
+    /**
+     * @return array<Project> list of projects
+     */
+    public function getAllProjects()
+    {
 
+        return [];
+    }
 }

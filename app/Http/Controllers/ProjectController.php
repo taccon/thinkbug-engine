@@ -68,6 +68,19 @@ class ProjectController extends Controller
     }
 
     /**
+     * DELETE /projects/{projectId}
+     *
+     * @param $projectId
+     * @return null
+     */
+    public function deleteProject($projectId)
+    {
+        $this->projectManager->deleteProject($projectId);
+
+        return null;
+    }
+
+    /**
      * GET /projects/{projectId}/users
      *
      * @param $projectId

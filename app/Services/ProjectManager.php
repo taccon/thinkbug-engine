@@ -39,7 +39,6 @@ class ProjectManager
      */
     public function getAllProjects()
     {
-
         return Project::all();
     }
 
@@ -49,7 +48,14 @@ class ProjectManager
      */
     public function getProject($projectId)
     {
-
         return Project::findOrFail($projectId);
+    }
+
+    /**
+     * @param $projectId
+     */
+    public function deleteProject($projectId)
+    {
+        Project::destroy($projectId);
     }
 }

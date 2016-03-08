@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Services\ProjectManager;
 use App\Services\TicketManager;
+use App\Ticket;
 
 /**
  * Class TicketController
@@ -43,5 +44,16 @@ class TicketController extends Controller
         $project = $this->projectManager->getProject($projectId);
 
         return $project->tickets;
+    }
+
+    /**
+     * GET /projects/{projectId}/tickets/{ticketNumber}
+     *
+     * @param string $ticketNumber
+     * @return Ticket
+     */
+    public function getTicket($ticketNumber)
+    {
+        return $this->ticketManager->getTicket($ticketNumber);
     }
 }

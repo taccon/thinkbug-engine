@@ -34,6 +34,7 @@ class Ticket extends Model
      */
     protected $visible = [
         'ticket_number',
+        'project_id',
         'author_email',
         'assignee_email',
         'type',

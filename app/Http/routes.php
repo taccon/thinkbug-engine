@@ -23,5 +23,7 @@ $app->post('/projects/{projectId}/users', 'ProjectController@postProjectUsers');
 // Ticket routes
 $app->get('/projects/{projectId}/tickets', 'TicketController@getProjectTickets');
 $app->post('/projects/{projectId}/tickets', 'TicketController@postProjectTickets');
-$app->put('/projects/{projectId}/tickets/{ticketId}', 'TicketController@putProjectTicket');
-$app->delete('/projects/{projectId}/tickets/{ticketId}', 'TicketController@deleteProjectTicket');
+
+$app->get('/tickets/{ticketNumber}', 'TicketController@getTicket');
+$app->put('/tickets/{ticketNumber}', 'TicketController@putTicket');
+$app->delete('/tickets/{ticketNumber}', 'TicketController@deleteTicket');

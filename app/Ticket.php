@@ -27,22 +27,54 @@ class Ticket extends Model
         'status'
     ];
 
-    /** @var string $title */
-    public $title;
+    /**
+     * The attributes that should be visible in arrays.
+     *
+     * @var array
+     */
+    protected $visible = [
+        'ticket_number',
+        'author_email',
+        'assignee_email',
+        'type',
+        'title',
+        'description',
+        'status',
+        'created_at',
+        'updated_at'
+    ];
 
-    /** @var string $description */
-    public $description;
-
-    /** @var string $status */
-    public $status;
+    protected $appends = ['author_email', 'assignee_email'];
 
     public function author()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function assignee()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
+    }
+
+    public function project()
+    {
+        return $this->belongsTo('App\Project');
+    }
+
+    public function getTicketNumberAttribute($value)
+    {
+        $project = $this->project;
+
+        return sprintf('%s-%d', $project->short_code, $value);
+    }
+
+    public function getAuthorEmailAttribute()
+    {
+        return $this->attributes['author_email'] = $this->author->email;
+    }
+
+    public function getAssigneeEmailAttribute()
+    {
+        return $this->attributes['assignee_email'] = $this->assignee->email;
     }
 }

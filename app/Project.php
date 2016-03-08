@@ -31,11 +31,8 @@ class Project extends Model
      * @var array
      */
     protected $visible = [
-        'id', 'name',
+        'id', 'name', 'short_code'
     ];
-
-    /** @var string $name */
-    public $name;
 
     public function users()
     {

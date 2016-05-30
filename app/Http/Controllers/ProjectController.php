@@ -62,7 +62,8 @@ class ProjectController extends Controller
     {
         return $this->projectManager->createProject(
             [
-                'name' => $request->name
+                'name'          => $request->name,
+                'short_code'    => $request->short_code,
             ]
         );
     }

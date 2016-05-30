@@ -22,7 +22,7 @@ class Project extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'name', 'short_code',
     ];
 
     /**
@@ -42,5 +42,15 @@ class Project extends Model
     public function tickets()
     {
         return $this->hasMany('App\Ticket');
+    }
+
+    public static function create(array $attributes = [])
+    {
+        if (empty($attributes['short_code'])) {
+            // TODO Check for existing code...
+            $attributes['short_code'] = strtoupper(substr($attributes['name'], 0, 3));
+        }
+
+        return parent::create($attributes);
     }
 }

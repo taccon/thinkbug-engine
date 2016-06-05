@@ -16,7 +16,7 @@ folders:
       to: "/home/vagrant/thinkbug-engine"
 
 sites:
-    - map: homestead.app
+    - map: thinkbug.dev
       to: "/home/vagrant/thinkbug-engine/public"
 
 databases:
